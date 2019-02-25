@@ -1,0 +1,35 @@
+{
+  "name": "node-stateless-microservice",
+  "version": "1.0.0",
+  "description": "a stateless microservice with nodejs",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelNgiri/Node-Stateless-Microservice.git"
+  },
+  "keywords": [
+    "node",
+    "microservice",
+    "stateless",
+    "microservice",
+    "stateless",
+    "json",
+    "patching",
+    "thumbnail",
+    "generation"
+  ],
+  "author": "Ngiri Michael",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/michaelNgiri/Node-Stateless-Microservice/issues"
+  },
+  "homepage": "https://github.com/michaelNgiri/Node-Stateless-Microservice#readme"
+}
