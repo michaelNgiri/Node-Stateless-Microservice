@@ -21,7 +21,11 @@ router.patch('/', (req, res, next)=>{
 
     //send patched json to user
     res.status(200).json({ patchedJsonObject })
+   }
+
+   function abort() {
+       res.status(400).json({status:"400", message:'invalid json objects'})
+   }
  
 })
-
 module.exports=router
