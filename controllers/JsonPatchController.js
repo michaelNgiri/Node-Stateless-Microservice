@@ -4,10 +4,11 @@ const jwt = require('jsonwebtoken');
 const jsonpatch = require('fast-json-patch')
 const { body, validationResult } = require('express-validator/check')
 const validateJsonObjects = require('../middlewares/validate-json-objects')
+const verifyToken = require('../middlewares/verifyToken');
 
 
 //route to patch json
-router.patch('/', (req, res, next)=>{
+router.patch('/', verifyToken, (req, res, next)=>{
 
    validateJsonObjects(req.body)?patch():abort()
 
