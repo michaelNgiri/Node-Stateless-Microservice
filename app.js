@@ -17,8 +17,12 @@ const cors = require('cors');
 app.use(cors());
 
 //import authentication module
-const auth = require('./controllers/auth')
+const auth = require('./controllers/AuthController')
 app.use('/auth', auth)
+
+
+
+
 
 
 
@@ -31,6 +35,8 @@ app.get('/', (req, res)=>{
     res.status(200).send('welcome');
 
 });
+
+
 
 
 
