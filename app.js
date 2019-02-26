@@ -16,9 +16,11 @@ app.use(bodyParser.json());
 const cors = require('cors');
 app.use(cors());
 
-//import authentication module
+//import controller modules
 const auth = require('./controllers/AuthController')
+const patch = require('./controllers/JsonPatchController')
 app.use('/auth', auth)
+app.use('/patch', patch)
 
 
 
