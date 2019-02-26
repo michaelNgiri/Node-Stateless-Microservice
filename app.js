@@ -18,6 +18,7 @@ app.get('/', (req, res)=>{
 
 
 
+//set the port through env
 const port = process.env.PORT || 3000;
 
 
