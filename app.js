@@ -1,7 +1,26 @@
 const express = require('express');
 const app = express();
 
+
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 require('dotenv').config();
+
+//configure body-parser for express
+
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
+
+const cors = require('cors');
+app.use(cors());
+
+//import authentication module
+const auth = require('./controllers/auth')
+app.use('/auth', auth)
+
+
 
 
 
