@@ -19,8 +19,10 @@ app.use(cors());
 //import controller modules
 const auth = require('./controllers/AuthController')
 const patch = require('./controllers/JsonPatchController')
+const thumbnail = require('./controllers/ThumbnailDownloadController')
 app.use('/auth', auth)
 app.use('/patch', patch)
+app.use('/thumbnail', thumbnail)
 
 
 
