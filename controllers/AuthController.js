@@ -16,17 +16,17 @@ router.post('/login', async (req, res) => {
           const user = req.body.username;
           const authToken = jwt.sign(user, process.env.JWT_SECRET_KEY)
             //set cookies
-            res.cookie( 'Authorization',authToken, {
-            httpOny:true,
-                      //signed:true,
-                        //secure:secureCookie
-                    });
+            // res.cookie( 'Authorization',authToken, {
+            // httpOny:true,
+            //           //signed:true,
+            //             //secure:secureCookie
+            //         });
                     res.status(200).json({
                         status:200,
                         message: "login successful 😊",
                         Authorization:authToken,
                         user:user
-                    })
+                    });
             }else {
                     //return authentication failure error
                     res.status(401).json({
