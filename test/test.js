@@ -1,30 +1,36 @@
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let server = require('../app');
-let should = chai.should();
+const { expect } = require('chai')
+const request = require('supertest')
 
-  describe('/POST should login a user', () => {
-      it('Login a user', (done) => {
-        chai.request(server)
-            .get('/api/login')
-            .end((err, res) => {
-                  res.should.have.status(200);
-                  res.body.should.be.a('array');
-              done();
-            });
-      });
-  });
+const app = require('../app')
 
-describe('invalid login info test', ()=>{
-  it('it should accept a username/password and return a signed JWT', (done) => {
+
+
+
+describe('Test for Stateless Microservice with Node.JS', () => {
+  let token;
+  // Mock user authentication
+  describe('Authentication Test', () => {
+    it('should log in a user with any username/password combination and return JWT Authorization', (done) => {
       request.agent(app)
-        .post('/api/users/login')
-        .send(loginDetails)
+        .post('/api/auth/login')
+        .send({ username: 'username', password: 'password' })
         .end((err, res) => {
           expect(res.statusCode).to.equal(200)
-          expect(res.body.authorized).to.equal(true)
-          token = res.body.token
+          expect(res.body).to.have.property('Authorization');
+          done()
+        })
+    })
+
+    it('should should not sign in a user if username or password is missing', (done) => {
+      request.agent(app)
+        .post('/api/auth/login')
+        .send({ username: 'username', password: '' })
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(401)
           done()
         })
     })
   })
+
+
+  });
