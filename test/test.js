@@ -8,7 +8,7 @@ const app = require('../app')
 const imageLink = 'https://images-na.ssl-images-amazon.com/images/I/41u-ekL7%2B3L.jpg'
 const json = '{ "user": { "firstName": "peter", "lastName": "Ramirez" } }'
 const jsonPatch = '[{"op": "replace", "path": "/user/firstName", "value": "Michael"}, {"op": "replace", "path": "/user/lastName", "value": "Ngiri"}, { "op": "add", "path": "/status", "value": { "name": "pro" } }]'
-
+const fakeJsonPatch = 'fake'
 
 
 describe('Test for Stateless Microservice with Node.JS', () => {
@@ -107,6 +107,18 @@ console.log("the authorization:"+Authorization)
         })
       done()
     })
+
+    it('should return a 400 error if Authorization token is present but json is invalid', (done) => {
+      request.agent(app)
+        .patch('/api/patch')
+        .set('Authorization', Authorization)
+        .send({ json, fakeJsonPatch })
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(400)
+        })
+      done()
+    })
+
   })
 
 
