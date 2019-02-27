@@ -7,3 +7,7 @@ A stateless microservice with NodeJS
 
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/392931297fcbeb52d34f/test_coverage)](https://codeclimate.com/github/michaelNgiri/Node-Stateless-Microservice/test_coverage)
+
+
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/392931297fcbeb52d34f/maintainability)](https://codeclimate.com/github/michaelNgiri/Node-Stateless-Microservice/maintainability)
