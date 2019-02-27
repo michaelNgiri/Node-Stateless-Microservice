@@ -14,3 +14,17 @@ let should = chai.should();
             });
       });
   });
+
+describe('invalid login info test', ()=>{
+  it('it should accept a username/password and return a signed JWT', (done) => {
+      request.agent(app)
+        .post('/api/users/login')
+        .send(loginDetails)
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(200)
+          expect(res.body.authorized).to.equal(true)
+          token = res.body.token
+          done()
+        })
+    })
+  })
