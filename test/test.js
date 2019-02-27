@@ -6,6 +6,9 @@ const app = require('../app')
 
 
 const imageLink = 'https://images-na.ssl-images-amazon.com/images/I/41u-ekL7%2B3L.jpg'
+const json = '{ "user": { "firstName": "peter", "lastName": "Ramirez" } }'
+const jsonPatch = '[{"op": "replace", "path": "/user/firstName", "value": "Michael"}, {"op": "replace", "path": "/user/lastName", "value": "Ngiri"}, { "op": "add", "path": "/status", "value": { "name": "pro" } }]'
+
 
 
 describe('Test for Stateless Microservice with Node.JS', () => {
@@ -79,4 +82,33 @@ console.log("the authorization:"+Authorization)
 
 
   })
+
+
+
+    describe('JSON Patch Test', () => {
+    it('should patch json files with the right syntax if Authorization token is correct', (done) => {
+      request.agent(app)
+        .patch('/api/patch')
+        .set('Authorization', Authorization)
+        .send({ json, jsonPatch})
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(200)
+          done()
+        })
+    })
+
+    it('shouldreturn a 403 error if Authorization token is absent', (done) => {
+      request.agent(app)
+        .patch('/api/patch')
+        .set('Authorization', '')
+        .send({ json, jsonPatch })
+        .end((err, res) => {
+          expect(res.statusCode).to.equal(403)
+        })
+      done()
+    })
+  })
+
+
   });
+
