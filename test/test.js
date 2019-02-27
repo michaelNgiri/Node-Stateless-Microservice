@@ -9,7 +9,7 @@ const imageLink = 'https://images-na.ssl-images-amazon.com/images/I/41u-ekL7%2B3
 
 
 describe('Test for Stateless Microservice with Node.JS', () => {
-  let Authorization;
+  let Authorization='eyJhbGciOiJIUzI1NiJ9.YWx2ZWlz.2KkZh4heCt15qBqZ0-yB-A1V9_V_dfhKwDQ4dss29n4';
   // Mock user authentication
   describe('Authentication Test', () => {
     it('should login a user with any username/password combination and return JWT Authorization', (done) => {
@@ -19,7 +19,7 @@ describe('Test for Stateless Microservice with Node.JS', () => {
         .end((err, res) => {
           expect(res.statusCode).to.equal(200)
           expect(res.body).to.have.property('Authorization');
-          Authorization = res.body.Authorization;
+          global.Authorization = res.body.Authorization;
           done()
         })
     })
@@ -41,6 +41,7 @@ describe('Test for Stateless Microservice with Node.JS', () => {
 
 
   describe('Thumbnail creation Test', () => {
+console.log("the authorization:"+Authorization)
     it('should generate a thumbnail from a public image url and return the resized image if Authorization token is present', (done) => {
       request.agent(app)
         .post('/api/thumbnail')
@@ -53,7 +54,8 @@ describe('Test for Stateless Microservice with Node.JS', () => {
       done()
     })
 
-    it('it should not process image if Authorization token is invalid', (done) => {
+
+    it('should not process image if Authorization token is invalid', (done) => {
       request.agent(app)
         .post('/api/thumbnail')
         .set('Authorization', '')
@@ -64,7 +66,7 @@ describe('Test for Stateless Microservice with Node.JS', () => {
       done()
     })
 
-    it('it should not process image if url is invalid', (done) => {
+    it('should not process image if url is invalid', (done) => {
       request.agent(app)
         .post('/api/thumbnail')
         .set('Authorization', Authorization)
@@ -74,5 +76,7 @@ describe('Test for Stateless Microservice with Node.JS', () => {
         })
       done()
     })
+
+
   })
   });

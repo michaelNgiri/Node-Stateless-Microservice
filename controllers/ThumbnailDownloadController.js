@@ -14,9 +14,10 @@ const thumbnailsFolder = 'public/img/thumbnails'
 //route to generate thumbnails
 router.post('/', verifyToken, (req, res, next)=>{
 const ImageName = getFileNameExtension(req.body.imageLink)
+const imageLink = req.body.imageLink
 
   const options = {
-    url: req.body.imageLink,
+    url: imageLink,
     dest: imageDownloadsFolder               
   }
 
@@ -27,12 +28,13 @@ download.image(options)
         sharp(filename)
           .resize(50, 50)
           .toFile(thumbnailsFolder+'/'+ImageName, (err) => {
-            if (err) { return next(err) }
+            if (err) { 
+            console.log('some errors occured') 
+          }
 
             //return the generated thumbnail
             fs.readFile(thumbnailsFolder+'/'+ImageName, function(err, data) {
-              if (err) throw err; // Fail if the file can't be read.
-             
+              if (err) 
                 //set the response headers
                 res.writeHead(200, {'Content-Type': 'image/jpeg'});
                 // Send file  to the client.

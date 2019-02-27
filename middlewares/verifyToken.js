@@ -11,7 +11,7 @@ function  verifyToken(req, res, next) {
     if(requestHeader !== undefined){
         //get  the token
         req.token = requestHeader;
-        jwt.verify(req.token, process.env.JWT_SECRET_KEY, (err, user)=>{
+        jwt.verify(requestHeader, process.env.JWT_SECRET_KEY, (err, user)=>{
             if(err){
                 console.log(err);
                 //console.log(err);
