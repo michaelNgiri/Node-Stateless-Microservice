@@ -10,7 +10,6 @@ function loginIsValid(user){
         user.password.trim() !== '') {
         return true;
     }
-    console.log(user);
     return false;
 }
 module.exports = loginIsValid;
