@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const sharp = require('sharp')
 const download = require('image-downloader')
-const getFileExtension = require('../helpers/FileExtensionHelper')
+const getFileNameExtension = require('../helpers/FileExtensionHelper')
+const verifyToken = require('../middlewares/verifyToken');
 
 const fs = require('fs')
 
@@ -11,8 +12,8 @@ const thumbnailsFolder = 'public/img/thumbnails'
 
 
 //route to generate thumbnails
-router.post('/', (req, res, next)=>{
-const ImageName = getFileExtension(req.body.imageLink)
+router.post('/', verifyToken, (req, res, next)=>{
+const ImageName = getFileNameExtension(req.body.imageLink)
 
   const options = {
     url: req.body.imageLink,
@@ -34,13 +35,12 @@ download.image(options)
              
                 //set the response headers
                 res.writeHead(200, {'Content-Type': 'image/jpeg'});
-                // Send the file data to the cliemt.
+                // Send file  to the client.
                 res.end(data); 
                })
           })
-          .catch(() => {
+          .catch((err) => {
             res.status(500).json({ 
-
               error: 'Could not generate thumbnail, check the link you pasted or try again later' })
           })
      })
