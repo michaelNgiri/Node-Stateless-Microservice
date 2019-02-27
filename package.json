@@ -14,15 +14,18 @@
     "fs": "0.0.1-security",
     "image-downloader": "^3.4.2",
     "jsonwebtoken": "^8.5.0",
-    "mocha": "^6.0.2",
     "nodemon": "^1.18.10",
     "sharp": "^0.21.3"
   },
   "devDependencies": {
-    "eslint": "^5.14.1"
+    "chai": "^4.2.0",
+    "eslint": "^5.14.1",
+    "mocha": "^6.0.2",
+    "should": "^13.2.3",
+    "supertest": "^3.4.2"
   },
   "scripts": {
-    "test": "test",
+    "test": "mocha",
     "start": "node app.js"
   },
   "repository": {
