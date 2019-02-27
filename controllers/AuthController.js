@@ -14,7 +14,7 @@ router.post('/login', async (req, res) => {
     if(loginIsValid(req.body) == true){
    //login the user
           const user = req.body.username;
-          const authToken = jwt.sign(user, 'secret_key')
+          const authToken = jwt.sign(user, process.env.JWT_SECRET_KEY)
             //set cookies
             res.cookie( 'Authorization',authToken, {
             httpOny:true,

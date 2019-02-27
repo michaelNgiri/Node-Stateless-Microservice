@@ -9,9 +9,14 @@
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "fast-json-patch": "^2.0.7",
+    "fs": "0.0.1-security",
+    "image-downloader": "^3.4.2",
     "jsonwebtoken": "^8.5.0",
     "mocha": "^6.0.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "sharp": "^0.21.3"
   },
   "devDependencies": {
     "eslint": "^5.14.1"
