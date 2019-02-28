@@ -36,7 +36,7 @@ app.use('/api/thumbnail', thumbnail)
 
 app.get('/', (req, res)=>{
     res.setHeader('Content-Type', 'text/html');
-    res.status(200).send('welcome');
+    res.status(200).sendFile(__dirname + "/" + "docs/swagger.json");
 
 });
 
